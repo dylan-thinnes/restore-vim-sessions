@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+shopt -s nullglob
+if [[ $# -eq 0 ]]; then
+  set -- ~/.vim-sessions/*
+fi
+for root in "$@"; do
+  echo "$root"
+  tmp=`mktemp -u`
+  mv "$root" $tmp
+  #echo ". ~/.bashrc; vim -S $tmp/session.vim" > $tmp/rcfile
+  #kitty -d=`cat "$tmp/path"` --detach -- bash --rcfile $tmp/rcfile -i
+  kitty -d=`cat "$tmp/path"` --detach -- bash -i -c "vim -S $tmp/session.vim ; bash"
+done
