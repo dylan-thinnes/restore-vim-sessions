@@ -18,3 +18,7 @@ and a new session takes its place.
 
 This way, after a system shutdown or vim being killed, you can recreate any
 in-progress vim instances by launching `restore-sessions`.
+
+TODO: Currently, `restore-sessions` will also restore sessions that are still
+running. We should identify which session files correspond to instances of vim
+that are no longer running, and only restore those.
